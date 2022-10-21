@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  templateUrl: "http://ligero7:8080"
+  templateUrl: "http://localhost:8080"
 };
 
 /*
