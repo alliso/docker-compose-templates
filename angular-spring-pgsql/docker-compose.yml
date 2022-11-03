@@ -1,0 +1,35 @@
+version: "3.5"
+services:
+
+  frontend:
+    container_name: frontend
+    build: .
+    volumes:
+      - ./frontend:/usr/src/app/
+    ports:
+      - "4200:4200"
+    working_dir: /usr/src/app
+    command:  /bin/bash -c "tail -f /dev/null"
+    
+  backend:
+    container_name: backend
+    image: maven:3-openjdk-17
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/usr/src/app
+    working_dir: /usr/src/app
+    command:  /bin/bash -c "tail -f /dev/null"
+
+  db:
+    container_name: db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: 'db'
+      POSTGRES_USER: 'template'
+      POSTGRES_PASSWORD: 'template'
+    ports:
+      - '5432:5432'
+        #volumes:
+        #- ./db:/var/lib/mysql
